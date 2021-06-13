@@ -1,0 +1,17 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="co.skipr.flutter_zendesk_support">
+
+    <application>
+        <activity
+            android:name="zendesk.support.request.RequestActivity"
+android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name="zendesk.support.requestlist.RequestListActivity"
+android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name="zendesk.support.guide.HelpCenterActivity"
+android:theme="@style/AppTheme.NoActionBar"/>
+    </application>
+</manifest>

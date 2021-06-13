@@ -1,0 +1,21 @@
+name: flutter_zendesk_support
+description: A new flutter plugin project.
+version: 2.0.0
+author: Skipr
+homepage: https://skipr.co
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  plugin:
+    androidPackage: co.skipr.flutter_zendesk_support
+    pluginClass: FlutterZendeskSupportPlugin

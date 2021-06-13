@@ -1,0 +1,83 @@
+name: hibi
+description: A new Flutter project.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.3.4+10
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^0.1.3
+  flutter_screenutil: ^1.0.2
+  flutter_localizations:
+    sdk: flutter
+  easy_localization: ^2.3.2
+  dio: ^3.0.9
+  cached_network_image: ^2.2.0+1
+  fluttertoast: ^4.0.0
+  web_socket_channel: ^1.1.0
+  event_bus: ^1.1.1
+  provider: ^4.1.2
+  pull_to_refresh: ^1.5.7
+  permission_handler: ^5.0.1
+  image_gallery_saver: ^1.5.0
+  orientation: ^1.2.0
+  flutter_swiper: ^1.1.6
+  shared_preferences: ^0.5.8
+  animations: ^1.0.0+5
+  sp_util: ^1.0.1
+  webview_flutter: ^0.3.22+1
+  image_picker: ^0.6.7+1
+  qr_flutter: ^3.2.0
+  #flutter_qr_reader: ^1.0.3
+  url_launcher: ^5.0.1
+  mqtt_client: ^8.0.0
+  drag_list: ^1.0.8
+  vibration: ^1.4.0
+  expandable: ^4.1.4
+  fl_chart: ^0.11.0
+  barcode_scan: ^2.0.2
+  decimal: ^0.3.0
+  video_player: ^0.10.11+1
+  flutter_native_splash: ^0.1.9
+  flutter_countdown_timer: ^1.1.0
+  flutter_zendesk_support:
+    path: flutter_zendesk_support-master/
+
+flutter_native_splash:
+  color: "020610"
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - i18n/
+    - res/
+  fonts:
+    - family: Din
+      fonts:
+        - asset: fonts/DIN.ttf
+
+
+
+
