@@ -1,16 +1,16 @@
+<!--
+ * @Description: file
+ * @Autor: dingyiming
+ * @Date: 2021-06-14 06:19:29
+ * @LastEditors: dingyiming
+ * @LastEditTime: 2021-06-14 07:34:03
+-->
 # flutter_exchange_ui
 
-A new Flutter project.
+> flutter 版本更替太快，技术兼容性较差，一个页面一个页面修复
 
-## Getting Started
+## WelcomePage
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![](./效果图/WelcomePage/1.png)
+![](./效果图/WelcomePage/2.png)
+![](./效果图/WelcomePage/3.png)
