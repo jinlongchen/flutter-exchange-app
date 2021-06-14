@@ -3,10 +3,11 @@
  * @Autor: dingyiming
  * @Date: 2021-06-14 06:19:29
  * @LastEditors: dingyiming
- * @LastEditTime: 2021-06-14 09:42:54
+ * @LastEditTime: 2021-06-14 09:51:55
  */
 import 'package:flutter/material.dart';
 import 'package:hibi/page/welcome/WelcomePage.dart';
+import 'package:hibi/page/home/NoticePage.dart';
 
 void main() {
   runApp(RootApp());
@@ -21,7 +22,7 @@ class RootApp extends StatelessWidget {
       theme: ThemeData(
         accentColor: ColorUtil.fromHex('#0a64bc'),
       ),
-      home: WelcomePage(),
+      home: NoticePage(),
     );
   }
 }

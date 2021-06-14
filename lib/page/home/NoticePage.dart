@@ -3,7 +3,7 @@
  * @Autor: dingyiming
  * @Date: 2021-06-14 07:38:06
  * @LastEditors: dingyiming
- * @LastEditTime: 2021-06-14 09:47:36
+ * @LastEditTime: 2021-06-14 09:52:49
  */
 import 'dart:convert';
 import 'package:hibi/common/DioManager.dart';
@@ -17,7 +17,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../WebPage.dart';
 
 class NoticePage extends StatefulWidget {
-  const NoticePage({required Key key}) : super(key: key);
+  const NoticePage({Key? key}) : super(key: key);
 
   @override
   _State createState() => new _State();

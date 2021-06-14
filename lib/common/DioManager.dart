@@ -10,14 +10,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
-
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sp_util/sp_util.dart';
 import 'Config.dart';
 import 'package:flutter/services.dart';
-
 
 class DioManager {
   static DioManager _instance;
@@ -28,61 +26,64 @@ class DioManager {
     }
     return _instance;
   }
+
   Dio dio = new Dio();
   DioManager() {
     dio.options.baseUrl = Url.BASE_URL;
     dio.options.connectTimeout = 500000;
     dio.options.receiveTimeout = 300000;
-    //dio.interceptors.add(LogInterceptor(responseBody: Config.isDebug)); //是否开启请求日志
+    dio.interceptors
+        .add(LogInterceptor(responseBody: Config.isDebug)); //是否开启请求日志
   }
 
   //get请求
-  get(String url, params,Function successCallBack,Function errorCallBack) async {
+  get(String url, params, Function successCallBack,
+      Function errorCallBack) async {
     _requstHttp(url, successCallBack, 'get', params, errorCallBack);
   }
 
   //post请求
-  post(String url, params,Function successCallBack,Function errorCallBack) async {
+  post(String url, params, Function successCallBack,
+      Function errorCallBack) async {
     _requstHttp(url, successCallBack, "post", params, errorCallBack);
   }
 
   //post请求
-  patch(String url, params,Function successCallBack,Function errorCallBack) async {
+  patch(String url, params, Function successCallBack,
+      Function errorCallBack) async {
     _requstHttp(url, successCallBack, "patch", params, errorCallBack);
   }
 
-  put(String url, params,Function successCallBack,Function errorCallBack) async {
+  put(String url, params, Function successCallBack,
+      Function errorCallBack) async {
     _requstHttp(url, successCallBack, "put", params, errorCallBack);
   }
 
-  delete(String url, params,Function successCallBack,Function errorCallBack) async {
+  delete(String url, params, Function successCallBack,
+      Function errorCallBack) async {
     _requstHttp(url, successCallBack, "delete", params, errorCallBack);
   }
 
-  String getLanguage(String languageCode){
-    switch(languageCode){
+  String getLanguage(String languageCode) {
+    switch (languageCode) {
       case "zh":
         return "zh-cn";
-        break;
       case "en":
         return "en-us";
-        break;
       case "vi":
         return "vi-vn";
-        break;
       case "zh-TW":
         return "zh-tw";
-        break;
     }
   }
 
   _requstHttp(String url, Function successCallBack,
-      [String method, params, Function errorCallBack,bool isBanner]) async {
+      [String? method, params, Function? errorCallBack, bool? isBanner]) async {
     String laguageCode = "CN";
-    if(params != null){
+    if (params != null) {
       params['lang'] = laguageCode;
-    }else{
-      params = {'lang':laguageCode};
+    } else {
+      params = {'lang': laguageCode};
     }
 
     Response response;
@@ -95,13 +96,13 @@ class DioManager {
         }
       } else if (method == 'post') {
         dio.options.headers = {
-          "Content-Type":'application/json',
-          "x-auth-token":SpUtil.getString(Config.token),
-          "EXP-LANG":laguageCode,
-          "EXP-DEVICE":Platform.isAndroid?"ANDROID":"iOS",
+          "Content-Type": 'application/json',
+          "x-auth-token": SpUtil.getString(Config.token),
+          "EXP-LANG": laguageCode,
+          "EXP-DEVICE": Platform.isAndroid ? "ANDROID" : "iOS",
         };
 
-        if ( Config.isDebug) {
+        if (Config.isDebug) {
           print('请求url: ' + url);
           print('请求头: ' + dio.options.headers.toString());
           if (params != null) {
@@ -116,26 +117,26 @@ class DioManager {
         } else {
           response = await dio.post(url);
         }
-      } else if(method == 'put'){
+      } else if (method == 'put') {
         if (params != null) {
           response = await dio.put(url, data: params);
         } else {
           response = await dio.put(url);
         }
-      } else if(method == 'delete'){
+      } else if (method == 'delete') {
         if (params != null) {
           response = await dio.delete(url, data: params);
         } else {
           response = await dio.delete(url);
         }
-      }else if(method == 'patch'){
+      } else if (method == 'patch') {
         if (params != null) {
           response = await dio.patch(url, data: params);
         } else {
           response = await dio.patch(url);
         }
       }
-    }on DioError catch(error) {
+    } on DioError catch (error) {
       // 请求错误处理
       Response errorResponse;
       if (error.response != null) {
@@ -153,7 +154,7 @@ class DioManager {
       }
 
       // debug模式才打印
-      if ( Config.isDebug) {
+      if (Config.isDebug) {
         print('请求异常: ' + error.toString());
         print('请求异常url: ' + url);
         print('请求头: ' + dio.options.headers.toString());
@@ -163,38 +164,40 @@ class DioManager {
     }
 
     // debug模式打印相关数据
-    if ( Config.isDebug) {
+    if (Config.isDebug) {
       if (response != null) {
         print('返回参数: ' + response.toString());
       }
     }
 
     String dataStr = json.encode(response.data);
-    try{
+    try {
       Map<String, dynamic> dataMap = json.decode(dataStr);
       if (dataMap['code'] == 0) {
         successCallBack(response.data);
-      }else if(dataMap['code'] != 0){
-        _error(errorCallBack,dataMap['message']);
+      } else if (dataMap['code'] != 0) {
+        _error(errorCallBack, dataMap['message']);
       }
-    }catch(error){
+    } catch (error) {
       Map<String, dynamic> dataMap = json.decode(response.data);
       if (dataMap['code'] == 0) {
         successCallBack(response.data);
-      }else if(dataMap['code'] == 4000){
+      } else if (dataMap['code'] == 4000) {
         SpUtil.putString(Config.token, "");
-        Provider.of<UserInfoState>(Global.navigatorKey.currentContext, listen: false).updateUserInfo(null);
-        if(url == Url.USER_INFO){
-          _error(errorCallBack,dataMap['message']);
-        }else{
-          _error(errorCallBack,dataMap['message']);
-          Global.navigatorKey.currentState.push(MaterialPageRoute(builder: (context) {
+        Provider.of<UserInfoState>(Global.navigatorKey.currentContext,
+                listen: false)
+            .updateUserInfo(null);
+        if (url == Url.USER_INFO) {
+          _error(errorCallBack, dataMap['message']);
+        } else {
+          _error(errorCallBack, dataMap['message']);
+          Global.navigatorKey.currentState
+              .push(MaterialPageRoute(builder: (context) {
             return LoginPage();
           }));
         }
       }
     }
-
   }
 
   _error(Function errorCallBack, error) {
@@ -202,18 +205,14 @@ class DioManager {
       errorCallBack(error);
     }
   }
-
-
 }
 
-
 class ResultCode {
-
   //正常返回是1
   static const SUCCESS = 1;
 
   //异常返回是0
-  static const ERROR = 1;
+  static const ERROR = 0;
 
   /// When opening  url timeout, it occurs.
   static const CONNECT_TIMEOUT = -1;
@@ -223,6 +222,7 @@ class ResultCode {
 
   /// When the server response, but with a incorrect status, such as 404, 503...
   static const RESPONSE = -3;
+
   /// When the request is cancelled, dio will throw a error with this type.
   static const CANCEL = -4;
 
