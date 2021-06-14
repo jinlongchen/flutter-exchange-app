@@ -3,11 +3,10 @@
  * @Autor: dingyiming
  * @Date: 2021-06-14 06:19:29
  * @LastEditors: dingyiming
- * @LastEditTime: 2021-06-14 07:24:34
+ * @LastEditTime: 2021-06-14 09:42:54
  */
 import 'package:flutter/material.dart';
 import 'package:hibi/page/welcome/WelcomePage.dart';
-// import 'package:hibi/page/welcome/FlutterScreen.dart';
 
 void main() {
   runApp(RootApp());

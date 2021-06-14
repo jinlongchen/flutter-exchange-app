@@ -3,7 +3,7 @@
  * @Autor: dingyiming
  * @Date: 2021-06-14 07:53:33
  * @LastEditors: dingyiming
- * @LastEditTime: 2021-06-14 09:40:55
+ * @LastEditTime: 2021-06-14 09:44:10
  */
 import 'dart:async';
 import 'package:hibi/styles/colors.dart';
@@ -15,7 +15,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 class WebPage extends StatefulWidget {
   final String url;
 
-  const WebPage({required Key key, required this.url}) : super(key: key);
+  const WebPage({Key? key, required this.url}) : super(key: key);
 
   @override
   _State createState() => new _State();
